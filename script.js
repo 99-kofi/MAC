@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (userMemory.name) {
                 response = `Your name is ${userMemory.name}.`;
             } else {
-                response = "I don't know your name yet. You can tell me by saying 'My name is [your name]'.";
+                response = "I don't know your name yet. You can tell me by saying 'My name is [your name]'";
             }
         } else if (input.includes('forget my name')) {
             userMemory.name = '';
