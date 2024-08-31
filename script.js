@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const location = input.split('in ')[1] || 'your location';
             response = await fetchWeather(location);
         } else if (input.includes('entertainment news')) {
-            window.open('https://www.bing.com/news/search?q=entertainment', '_blank');
+            window.open('https://www.bing.com/news/search?q=entertainment+news+in+ghana', '_blank');
             response = 'Opening entertainment news for you...';
         } else {
             response = `You said: ${input}. I don't have a specific response for that. Please note, MAC is still in its learning stage.`;
