@@ -145,15 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function generateStory() {
-        return "In the bustling town of Awutu Bereku, Ghana, lived a young boy named Kofi. From a very young age, Kofi was fascinated by technology. While other children played soccer in the dusty streets, Kofi spent hours tinkering with old gadgets, trying to understand how they worked."
-                'Kofi’s family wasn’t wealthy, but they were supportive. His mother, Ama, worked as a seamstress, and his father, Kwame, was a fisherman. They saved every extra cedi to buy Kofi a second-hand laptop. When Kofi finally received it, his eyes sparkled with joy. He knew this was his ticket to a brighter future.'
-                'Every evening after school, Kofi would sit under the baobab tree in his backyard, where the internet signal was strongest. He taught himself to code using free online resources. He built simple websites and apps, dreaming of one day creating something that could change the world.'
-                'One day, Kofi heard about a national tech competition for young innovators. The grand prize was a scholarship to a prestigious tech academy in Accra. Determined to win, Kofi spent countless nights perfecting his project—a mobile app that helped local farmers track weather patterns and optimize their crop yields.'
-                'The day of the competition arrived, and Kofi presented his app with confidence. The judges were impressed by his ingenuity and the potential impact of his creation. When they announced Kofi as the winner, he could hardly believe it. His hard work had paid off.'
-                'At the tech academy, Kofi thrived. He met other young tech enthusiasts and learned from some of the best minds in the industry. He continued to develop his app, which soon gained recognition and support from agricultural organizations across Ghana.'
-                'Years later, Kofi’s app had transformed the lives of thousands of farmers, increasing their productivity and improving their livelihoods. Kofi became a well-known tech entrepreneur, but he never forgot his roots. He returned to Awutu Bereku often, inspiring other young boys and girls to dream big and reach for the stars.'
-                'Kofi’s journey was a testament to the power of determination, hard work, and the belief that with the right tools and support, anyone can soar higher than they ever imagined.'
-                'I hope you enjoyed the story!";
+        return "In the bustling town of Awutu Bereku, Ghana, lived a young boy named Kofi. From a very young age, Kofi was fascinated by technology. While other children played soccer in the dusty streets, Kofi spent hours tinkering with old gadgets, trying to understand how they worked.\
+                Kofi’s family wasn’t wealthy, but they were supportive. His mother, Ama, worked as a seamstress, and his father, Kwame, was a fisherman. They saved every extra cedi to buy Kofi a second-hand laptop. When Kofi finally received it, his eyes sparkled with joy. He knew this was his ticket to a brighter future.\
+                Every evening after school, Kofi would sit under the baobab tree in his backyard, where the internet signal was strongest. He taught himself to code using free online resources. He built simple websites and apps, dreaming of one day creating something that could change the world.\
+                One day, Kofi heard about a national tech competition for young innovators. The grand prize was a scholarship to a prestigious tech academy in Accra. Determined to win, Kofi spent countless nights perfecting his project—a mobile app that helped local farmers track weather patterns and optimize their crop yields.\
+                The day of the competition arrived, and Kofi presented his app with confidence. The judges were impressed by his ingenuity and the potential impact of his creation. When they announced Kofi as the winner, he could hardly believe it. His hard work had paid off.\
+                At the tech academy, Kofi thrived. He met other young tech enthusiasts and learned from some of the best minds in the industry. He continued to develop his app, which soon gained recognition and support from agricultural organizations across Ghana.\
+                Years later, Kofi’s app had transformed the lives of thousands of farmers, increasing their productivity and improving their livelihoods. Kofi became a well-known tech entrepreneur, but he never forgot his roots. He returned to Awutu Bereku often, inspiring other young boys and girls to dream big and reach for the stars.\
+                Kofi’s journey was a testament to the power of determination, hard work, and the belief that with the right tools and support, anyone can soar higher than they ever imagined.\
+                I hope you enjoyed the story!";
     }
 
     async function generateLyrics(input) {
