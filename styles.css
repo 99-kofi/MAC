@@ -1,0 +1,123 @@
+body {
+    background: #121212; /* Cyberpunk theme with dark background */
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 20px;
+}
+
+.logo-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Makes the logo circular */
+    border: 5px solid #00ffcc; /* Stunning border color */
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.8); /* Glowing effect */
+}
+
+.wave-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+    animation: wave 2s infinite, pulse 2s infinite;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Ensure the animation is behind the logo */
+}
+
+@keyframes wave {
+    0% {
+        transform: scale(1) translate(-50%, -50%);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.8) translate(-50%, -50%);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) translate(-50%, -50%);
+        opacity: 0.5;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(0, 255, 204, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+    }
+}
+
+h1 {
+    font-size: 3em;
+    margin: 10px 0;
+    color: #00ffcc; /* Stunning color for title */
+}
+
+main {
+    padding: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #000;
+    background-color: #00ffcc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00cc99;
+}
+
+#suggestions {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+#suggestions h2 {
+    margin: 0 0 10px;
+    color: #00ffcc; /* Color for heading */
+}
+
+#suggestions ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#suggestions li {
+    background: rgba(0, 255, 204, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+footer {
+    padding: 10px;
+    background-color: #1a1a1a;
+}
