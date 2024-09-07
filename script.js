@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (input.includes('who created you') || input.includes('who developed you')) {
             response = 'I was created by WAIT Technologies.';
         } else if (input.includes('what can you do') || input.includes('what are you capable of')) {
-            response = 'I can help with various tasks like searching the web, providing weather updates, telling stories, and more. Please note, MAC is still in its learning stage, so I\'m continuously improving.';
+            response = 'I can help with various tasks like searching the web, providing weather updates, telling stories, translating text, solving math problems, and more.';
         } else if (input.includes('what time is it')) {
             const now = new Date();
             response = `The current time is ${now.getHours()}:${now.getMinutes()}`;
@@ -83,12 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 response = 'Please specify what you would like to search for.';
             }
         } else if (input.includes('calculate')) {
-            try {
-                const result = eval(input.split('calculate ')[1]);
-                response = `The result is ${result}`;
-            } catch (error) {
-                response = 'I\'m sorry, I could not calculate that.';
-            }
+            response = await performCalculation(input);
+        } else if (input.includes('translate to french')) {
+            const textToTranslate = input.replace('translate to french', '').trim();
+            response = await translateToFrench(textToTranslate);
+        } else if (input.includes('translate to english')) {
+            const textToTranslate = input.replace('translate to english', '').trim();
+            response = await translateToEnglish(textToTranslate);
         } else if (input.includes('tell me a joke')) {
             response = 'Why don\'t scientists trust atoms? Because they make up everything!';
         } else if (input.includes('sports news')) {
@@ -119,15 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open('https://www.google.com/search?q=world+history', '_blank');
             response = 'Searching for world history information...';
         } else if (input.includes('math question')) {
-            const question = input.split('math question ')[1];
-            try {
-                const result = eval(question);
-                response = `The answer is ${result}`;
-            } catch (error) {
-                response = 'I\'m sorry, I could not solve that math question.';
-            }
+            response = await performCalculation(input.replace('math question', '').trim());
         } else if (input.includes('weather in') || input.includes('what is the weather')) {
-            // To be rewritten to show weather for user in his or her current location
             const location = input.split('in ')[1] || 'your location';
             response = await fetchWeather(location);
         } else if (input.includes('entertainment news')) {
@@ -140,8 +134,21 @@ document.addEventListener('DOMContentLoaded', () => {
         speak(response);
     }
 
-    function containsRestrictedWords(input) {
-        return restrictedWords.some(word => input.includes(word));
+    async function performCalculation(input) {
+        try {
+            let mathExpression = input.replace('calculate', '').trim();
+            // Handle trigonometric functions
+            mathExpression = mathExpression.replace(/sin|cos|tan/g, function(match) {
+                return `Math.${match}`;
+            });
+            // Handle square root and power
+            mathExpression = mathExpression.replace(/sqrt/g, 'Math.sqrt').replace(/pow/g, 'Math.pow');
+
+            const result = eval(mathExpression);
+            return `The result is ${result}`;
+        } catch (error) {
+            return 'I\'m sorry, I could not calculate that.';
+        }
     }
 
     async function generateStory() {
@@ -160,33 +167,46 @@ document.addEventListener('DOMContentLoaded', () => {
         return "Here's a song about love and hope...";
     }
 
-    async function fetchWeather(location) {
-        const apiKey = '95546e2ae4b482daf262fc4c81dae937'; // Replace with your weather API key
-
-        //To be refactored and integrated with this code base
-        let userCoordinates;
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(storeCoordinates);
-        } else { 
-            //Add better error handling that integrates well with this project 
-            console.log("Geolocation is not supported by this browser.");
+    async function translateToFrench(text) {
+        try {
+            const response = await fetch('https://libretranslate.de/translate', {
+                method: 'POST',
+                body: JSON.stringify({
+                    q: text,
+                    source: 'en',
+                    target: 'fr',
+                    format: 'text'
+                }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await response.json();
+            return data.translatedText ? `In French: ${data.translatedText}` : 'Translation failed.';
+        } catch (error) {
+            return 'I\'m sorry, I couldn\'t translate that.';
         }
+    }
 
-        function storeCoordinates(position) {
-            userCoordinates = {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-            };
+    async function translateToEnglish(text) {
+        try {
+            const response = await fetch('https://libretranslate.de/translate', {
+                method: 'POST',
+                body: JSON.stringify({
+                    q: text,
+                    source: 'fr',
+                    target: 'en',
+                    format: 'text'
+                }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await response.json();
+            return data.translatedText ? `In English: ${data.translatedText}` : 'Translation failed.';
+        } catch (error) {
+            return 'I\'m sorry, I couldn\'t translate that.';
         }
+    }
 
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(location)}&appid=${apiKey}&units=metric`);
-        const data = await response.json();
-        if (data.main) {
-            return `The weather in ${location} is ${data.weather[0].description} with a temperature of ${data.main.temp}Â°C.`;
-        } else {
-            return `I\'m sorry, I couldn\'t fetch the weather for ${location}.`;
-        }
+    function containsRestrictedWords(input) {
+        return restrictedWords.some(word => input.includes(word));
     }
 
     function speak(text) {
@@ -224,5 +244,3 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 });
-
-
